@@ -11,12 +11,12 @@ class ResponseHandler
     /**
      * @param string $payload
      *
-     * @return array
+     * @return \ArrayObject
      *@throws InvalidJsonException
      */
-    public static function success(string $payload): array
+    public static function success(string $payload): \ArrayObject
     {
-        return self::toArray($payload);
+        return self::toJson($payload);
     }
 
     /**
@@ -42,7 +42,7 @@ class ResponseHandler
         $body = $response->getBody()->getContents();
 
         try {
-            $responseAsArray = self::toArray($body);
+            $responseAsArray = self::toJson($body);
         } catch (InvalidJsonException $invalidJson) {
             $responseAsArray = [];
         }
@@ -54,13 +54,13 @@ class ResponseHandler
             $body
         );
     }
-    
+
     /**
      * @param string $json
-     * @return array
+     * @return \ArrayObject
      * @throws InvalidJsonException
      */
-    private static function toArray(string $json): array
+    private static function toJson(string $json): \ArrayObject
     {
         $result = json_decode($json, true);
 
