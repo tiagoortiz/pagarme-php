@@ -13,7 +13,7 @@ class Orders extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function create(array $payload): array
+    public function create(array $payload)
     {
         return $this->client->request(
             self::POST,
@@ -28,7 +28,7 @@ class Orders extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function addCharge(array $payload): array
+    public function addCharge(array $payload): \stdClass
     {
         return $this->client->request(
             self::POST,
@@ -43,7 +43,7 @@ class Orders extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function getList(array $payload = null): array
+    public function getList(array $payload = null): \stdClass
     {
         return $this->client->request(
             self::GET,
@@ -58,7 +58,7 @@ class Orders extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function get(array $payload): array
+    public function get(array $payload): \stdClass
     {
         return $this->client->request(
             self::GET,
@@ -72,7 +72,7 @@ class Orders extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function closed(array $payload): array
+    public function closed(array $payload): \stdClass
     {
         return $this->client->request(
             self::PATCH,

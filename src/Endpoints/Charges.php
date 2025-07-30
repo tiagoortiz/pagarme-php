@@ -13,7 +13,7 @@ class Charges extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function capture(array $payload): array
+    public function capture(array $payload): \stdClass
     {
         return $this->client->request(
             self::POST,
@@ -28,7 +28,7 @@ class Charges extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function updateCard(array $payload): array
+    public function updateCard(array $payload): \stdClass
     {
         return $this->client->request(
             self::PATCH,
@@ -43,7 +43,7 @@ class Charges extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function updateBillingDue(array $payload): array
+    public function updateBillingDue(array $payload): \stdClass
     {
         return $this->client->request(
             self::PATCH,
@@ -58,7 +58,7 @@ class Charges extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function updatePaymentMethod(array $payload): array
+    public function updatePaymentMethod(array $payload): \stdClass
     {
         return $this->client->request(
             self::PATCH,
@@ -73,7 +73,7 @@ class Charges extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function getList(array $payload = null): array
+    public function getList(array $payload = null): \stdClass
     {
         return $this->client->request(
             self::GET,
@@ -88,7 +88,7 @@ class Charges extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function get(array $payload): array
+    public function get(array $payload): \stdClass
     {
         return $this->client->request(
             self::GET,
@@ -102,7 +102,7 @@ class Charges extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function confirmCash(array $payload): array
+    public function confirmCash(array $payload): \stdClass
     {
         return $this->client->request(
             self::POST,
@@ -117,7 +117,7 @@ class Charges extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function holdCharge(array $payload): array
+    public function holdCharge(array $payload): \stdClass
     {
         return $this->client->request(
             self::POST,
@@ -131,7 +131,7 @@ class Charges extends Endpoint
      * @return array
      * @throws PagarMeException
      */
-    public function cancel(array $payload): array
+    public function cancel(array $payload): \stdClass
     {
         return $this->client->request(
             self::DELETE,

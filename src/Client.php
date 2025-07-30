@@ -99,11 +99,11 @@ class Client
      * @param string $uri
      * @param array $options
      *
-     * @return array
+     * @return \stdClass
      *
      * @throws PagarMeException
      */
-    public function request(string $method, string $uri, array $options = []): array
+    public function request(string $method, string $uri, array $options = [])
     {
         try {
             $response = $this->http->request(
