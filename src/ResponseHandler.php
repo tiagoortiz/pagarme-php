@@ -11,10 +11,10 @@ class ResponseHandler
     /**
      * @param string $payload
      *
-     * @return \ArrayObject
+     * @return \stdClass
      *@throws InvalidJsonException
      */
-    public static function success(string $payload): \ArrayObject
+    public static function success(string $payload)
     {
         return self::toJson($payload);
     }
@@ -42,7 +42,7 @@ class ResponseHandler
         $body = $response->getBody()->getContents();
 
         try {
-            $responseAsArray = self::toJson($body);
+            $responseAsArray = self::toArray($body);
         } catch (InvalidJsonException $invalidJson) {
             $responseAsArray = [];
         }
@@ -53,16 +53,32 @@ class ResponseHandler
             $responseAsArray["errors"] ?? [],
             $body
         );
+    }    
+
+    /**
+     * @param string $json
+     * @return array
+     * @throws InvalidJsonException
+     */
+    private static function toArray(string $json): array
+    {
+        $result = json_decode($json, true);
+
+        if (json_last_error() != \JSON_ERROR_NONE) {
+            throw new InvalidJsonException(json_last_error_msg());
+        }
+
+        return $result;
     }
 
     /**
      * @param string $json
-     * @return \ArrayObject
+     * @return \stdClass
      * @throws InvalidJsonException
      */
-    private static function toJson(string $json): \ArrayObject
+    private static function toJson(string $json)
     {
-        $result = json_decode($json, true);
+        $result = json_decode($json);
 
         if (json_last_error() != \JSON_ERROR_NONE) {
             throw new InvalidJsonException(json_last_error_msg());

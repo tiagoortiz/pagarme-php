@@ -12,8 +12,7 @@ class RequestHandler
      */
     public static function bindApiKeyToHeader(array $options, string $apiKey): array
     {
-        $options['auth'][] = $apiKey;
-        $options['auth'][] = "";
+        $options['headers']['Authorization'] = 'Basic ' . base64_encode($apiKey.':');
 
         return $options;
     }
